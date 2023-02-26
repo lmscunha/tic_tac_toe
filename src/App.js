@@ -59,11 +59,12 @@ export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHIstory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
-  const currentSquares = history[history.length - 1];
+  const currentSquares = history[currentMove];
 
   function handlePlay(nextSquares) {
-    // TODO: UPDATE HANDLE PLAY TO AJUST THE HISTORY
-    setHIstory([...history, nextSquares]);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHIstory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
     setXIsNext(!xIsNext);
   }
 
@@ -120,4 +121,3 @@ function calculateWinner(squares) {
 
   return null;
 }
-// TODO: Add time travel
