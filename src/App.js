@@ -33,48 +33,56 @@ function Board({ xIsNext, squares, onPlay }) {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
 
-  const rows1 = [];
+  // const rows1 = [];
+  //
+  // for (let squareNumber = 0; squareNumber < 3; squareNumber++) {
+  //   rows1.push(
+  //     <Square
+  //       key={squareNumber}
+  //       value={squares[squareNumber]}
+  //       onSquareClick={() => handleClick(squareNumber)}
+  //     />
+  //   );
+  // }
+  //
+  // const rows2 = [];
+  //
+  // for (let squareNumber = 3; squareNumber < 6; squareNumber++) {
+  //   rows2.push(
+  //     <Square
+  //       key={squareNumber}
+  //       value={squares[squareNumber]}
+  //       onSquareClick={() => handleClick(squareNumber)}
+  //     />
+  //   );
+  // }
+  //
 
-  for (let squareNumber = 0; squareNumber < 3; squareNumber++) {
-    rows1.push(
-      <Square
-        key={squareNumber}
-        value={squares[squareNumber]}
-        onSquareClick={() => handleClick(squareNumber)}
-      />
-    );
-  }
+  const numberOfRows = 3;
+  const rowElements = [];
+  const sqaureRow = [];
 
-  const rows2 = [];
-
-  for (let squareNumber = 3; squareNumber < 6; squareNumber++) {
-    rows2.push(
-      <Square
-        key={squareNumber}
-        value={squares[squareNumber]}
-        onSquareClick={() => handleClick(squareNumber)}
-      />
-    );
-  }
-
-  const rows3 = [];
-
-  for (let squareNumber = 6; squareNumber < 9; squareNumber++) {
-    rows3.push(
-      <Square
-        key={squareNumber}
-        value={squares[squareNumber]}
-        onSquareClick={() => handleClick(squareNumber)}
-      />
+  for (let rowElement = 0; rowElement < numberOfRows; rowElement++) {
+    rowElements.push(
+      <div className="board-row">
+        <Square
+          key={rowElement}
+          value={squares[rowElement]}
+          onSquareClick={() => handleClick(rowElement)}
+        />
+      </div>
     );
   }
 
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">{rows1}</div>
-      <div className="board-row">{rows2}</div>
-      <div className="board-row">{rows3}</div>
+      {rowElements.map((rowElement) => {
+        return <div className="board-row">{squareRow}</div>;
+      })}
+      // <div className="board-row">{rows1}</div>
+      // <div className="board-row">{rows2}</div>
+      // <div className="board-row">{rows3}</div>
     </>
   );
 }
